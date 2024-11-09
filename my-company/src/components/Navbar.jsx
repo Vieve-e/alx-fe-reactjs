@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
 
-    <nav style={{ backgroundColor: '#282c34', padding: '20px', justifyContent: 'center', color: 'white' }}>
+    <nav style={{ backgroundColor: '#282c34', padding: '20px', justifyContent: 'center', color: 'white', display: 'inline-grid' }}>
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
