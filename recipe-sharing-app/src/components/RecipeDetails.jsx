@@ -11,7 +11,10 @@
        <h1>{recipe.title}</h1>
        <p>{recipe.description}</p>
        {/* Render EditRecipeForm and DeleteRecipeButton here */}
-     </div>
+       {/* Edit and Delete */}
+      <EditRecipeForm recipe={recipe} />
+      <DeleteRecipeButton recipeId={recipe.id} />
+    </div>
    );
  };
  export default RecipeDetails;
