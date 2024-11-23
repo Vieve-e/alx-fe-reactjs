@@ -11,30 +11,44 @@ const RegistrationForm = () => {
     };
 
   // Validate form inputs
-  const ValidateForm = () => {
+  const validateForm = () => {
     const newErrors = {};
-    if (!formData.username.trim()) newErrors.username = 'Username is required.';
-    if (!formData.email.trim()) {
+
+    // Validate username
+    if (!username) {
+      newErrors.username = 'Username is required.';
+    }
+
+    // Validate email
+    if (!email) {
       newErrors.email = 'Email is required.';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Invalid email format.';
     }
-    if (!formData.password.trim()) newErrors.password = 'Password is required.';
+
+    // Validate password
+    if (!password) {
+      newErrors.password = 'Password is required.';
+    } else if (password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters.';
+    }
+
     setErrors(newErrors);
 
-    return Object.keys(newErrors).length === 0; // Returns true if no errors
+    // If there are no errors, the form is valid
+    return Object.keys(newErrors).length === 0;
   };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validateForm()) {
-            alert('Form submitted successfully!');
-            console.log('Submitted data:', formData);
-            // Simulate API call
-            setFormData({ username: '', email: '', password: '' }); // Reset form
-          }
-        };
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    if (validateForm()) {
+      console.log('Form submitted:', formData);
+      alert('Registration successful!');
+      setFormData({ username: '', email: '', password: '' }); // Reset form
+    }
+  };
         return (
             <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px' }}>
               <h2>User Registration</h2>
