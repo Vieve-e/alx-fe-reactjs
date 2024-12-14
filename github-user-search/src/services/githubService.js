@@ -14,7 +14,7 @@ export const fetchUserData = async (username) => {
     if (error.response && error.response.status === 404) {
       throw new Error("User not found");
     } else {
-      throw new Error("An error occurred while fetching data");
+      throw new Error("Looks like we can't find the user");
     }
   }
 };
