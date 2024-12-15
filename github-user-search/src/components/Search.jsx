@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { fetchUserData } from "../services/githubService"; // Import the service function
 import axios from "axios";
 
 function Search() {
@@ -85,7 +86,17 @@ function Search() {
     setError(null);
 
     try {
-      const results = await searchUsers(searchCriteria, 1);
+        const data = await fetchUserData(username); // Call the service to fetch data
+        setUserData(data); // Update the user data state
+      } catch (err) {
+        setError("Looks like we can't find the user."); // Set the error message
+      } finally {
+        setLoading(false); // Stop loading
+      }
+    };
+
+    try {
+      const results = searchUsers(searchCriteria, 1);
 
       setSearchResults(results.users);
       setTotalResults(results.total_count);
@@ -263,5 +274,5 @@ function Search() {
       )}
     </div>
   );
-}
+
 export default Search;
