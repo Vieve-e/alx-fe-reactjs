@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const GITHUB_API_URL = '(https://api.github.com/search/users?q={query})';
 // Base URL for GitHub API
 const BASE_URL = "https://api.github.com";
 
@@ -84,7 +84,7 @@ export const getUserRepositories = async (username, options = {}) => {
       direction = 'desc' // Sort direction
     } = options;
 
-    const response = await axios.get(`${BASE_URL}/users/${username}/repos`, {
+    const response = await axios.get(`${GITHUB_API_URL}/users/${username}/repos`, {
       params: {
         type,
         sort,
